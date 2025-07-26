@@ -7,9 +7,11 @@ import {
 } from "@remix-run/react";
 
 import "./tailwind.css";
+// import globalStyles from "./styles/global-styles.css?url";
 
 export const links = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  // { rel: "stylesheet", href: globalStyles },
   {
     rel: "preconnect",
     href: "https://fonts.gstatic.com",
