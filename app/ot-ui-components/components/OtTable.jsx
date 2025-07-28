@@ -1,53 +1,53 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Tooltip from '@material-ui/core/Tooltip';
-import Badge from '@material-ui/core/Badge';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import FirstPageIcon from '@material-ui/icons/FirstPage';
-import LastPageIcon from '@material-ui/icons/LastPage';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import HelpIcon from '@material-ui/icons/Help';
+import React, { Component } from "react";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles/index.js";
+import Typography from "@material-ui/core/Typography/index.js";
+import Grid from "@material-ui/core/Grid/index.js";
+import Table from "@material-ui/core/Table/index.js";
+import TableHead from "@material-ui/core/TableHead/index.js";
+import TableBody from "@material-ui/core/TableBody/index.js";
+import TableRow from "@material-ui/core/TableRow/index.js";
+import TableCell from "@material-ui/core/TableCell/index.js";
+import TablePagination from "@material-ui/core/TablePagination/index.js";
+import TableSortLabel from "@material-ui/core/TableSortLabel/index.js";
+import Tooltip from "@material-ui/core/Tooltip/index.js";
+import Badge from "@material-ui/core/Badge/index.js";
+import Button from "@material-ui/core/Button/index.js";
+import IconButton from "@material-ui/core/IconButton/index.js";
+import FirstPageIcon from "@material-ui/icons/FirstPage";
+import LastPageIcon from "@material-ui/icons/LastPage";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import HelpIcon from "@material-ui/icons/Help";
 
-import PlotContainer from './PlotContainer';
-import PlotContainerSection from './PlotContainerSection';
-import downloadTable from '../helpers/downloadTable';
+import PlotContainer from "./PlotContainer";
+import PlotContainerSection from "./PlotContainerSection";
+import downloadTable from "../helpers/downloadTable";
 
 const PAGE_SIZE = 10;
 
-const actionsStyles = theme => ({
+const actionsStyles = (theme) => ({
   root: {
     flexShrink: 0,
   },
 });
 
 class TablePaginationActions extends Component {
-  handleFirstPageButtonClick = event => {
+  handleFirstPageButtonClick = (event) => {
     this.props.onPageChange(event, 0);
   };
 
-  handleBackButtonClick = event => {
+  handleBackButtonClick = (event) => {
     const { onPageChange, page } = this.props;
     onPageChange(event, page - 1);
   };
 
-  handleNextButtonClick = event => {
+  handleNextButtonClick = (event) => {
     const { onPageChange, page } = this.props;
     onPageChange(event, page + 1);
   };
 
-  handleLastPageButtonClick = event => {
+  handleLastPageButtonClick = (event) => {
     const { onPageChange, count, rowsPerPage } = this.props;
     const lastPage = Math.ceil(count / rowsPerPage) - 1;
     onPageChange(event, lastPage);
@@ -94,90 +94,90 @@ class TablePaginationActions extends Component {
 TablePaginationActions = withStyles(actionsStyles)(TablePaginationActions);
 
 const getComparator = (columns, sortBy, order) => {
-  const column = columns.find(col => col.id === sortBy);
+  const column = columns.find((col) => col.id === sortBy);
 
   if (column && column.comparator) {
-    if (order === 'asc') {
+    if (order === "asc") {
       return column.comparator;
     }
     return (a, b) => -column.comparator(a, b);
   }
 
-  const comparatorValue = order === 'desc' ? 1 : -1;
+  const comparatorValue = order === "desc" ? 1 : -1;
 
   return (a, b) => {
     if (a[sortBy] === b[sortBy]) {
       return 0;
     }
 
-    if (a[sortBy] === undefined || a[sortBy] === '' || a[sortBy] < b[sortBy]) {
+    if (a[sortBy] === undefined || a[sortBy] === "" || a[sortBy] < b[sortBy]) {
       return comparatorValue;
     }
 
-    if (b[sortBy] === undefined || b[sortBy] === '' || a[sortBy] > b[sortBy]) {
+    if (b[sortBy] === undefined || b[sortBy] === "" || a[sortBy] > b[sortBy]) {
       return -comparatorValue;
     }
   };
 };
 
-const tableStyles = theme => ({
+const tableStyles = (theme) => ({
   tableWrapper: {
-    overflowX: 'auto',
+    overflowX: "auto",
   },
   tooltipIcon: {
-    fontSize: '1.2rem',
+    fontSize: "1.2rem",
     paddingLeft: `0.6rem`,
   },
   buttonMargin: {
-    marginRight: '4px',
+    marginRight: "4px",
   },
   tableRow: {
-    height: '31px',
+    height: "31px",
   },
   tableRowFixed: {
     background: theme.palette.grey[300],
   },
   tableRowFilters: {
-    verticalAlign: 'bottom',
+    verticalAlign: "bottom",
   },
   tableCell: {
-    padding: '0 12px 0 0',
-    '&:first-child': {
-      paddingLeft: '24px',
+    padding: "0 12px 0 0",
+    "&:first-child": {
+      paddingLeft: "24px",
     },
-    '&:last-child': {
-      paddingRight: '24px',
+    "&:last-child": {
+      paddingRight: "24px",
     },
   },
   tableCellHeader: {
-    paddingRight: '12px',
+    paddingRight: "12px",
     paddingLeft: 0,
-    '&:first-child': {
-      paddingLeft: '24px',
+    "&:first-child": {
+      paddingLeft: "24px",
     },
-    '&:last-child': {
-      paddingRight: '24px',
+    "&:last-child": {
+      paddingRight: "24px",
     },
   },
   tableCellHeaderVertical: {
-    textAlign: 'center',
-    verticalAlign: 'bottom',
+    textAlign: "center",
+    verticalAlign: "bottom",
   },
   tableCellVertical: {
-    minWidth: '24px',
-    width: '24px',
+    minWidth: "24px",
+    width: "24px",
     paddingRight: 0,
   },
   tableCellFill: {
-    width: '100%',
+    width: "100%",
   },
   verticalHeader: {
-    writingMode: 'vertical-rl',
-    transform: 'rotate(180deg)',
-    whiteSpace: 'nowrap',
+    writingMode: "vertical-rl",
+    transform: "rotate(180deg)",
+    whiteSpace: "nowrap",
   },
   downloadHeader: {
-    marginTop: '7px',
+    marginTop: "7px",
   },
   badgeWithTooltip: {
     flexShrink: 1,
@@ -197,12 +197,12 @@ class OtTable extends Component {
     });
   };
 
-  selectSortColumn = sortBy => {
+  selectSortColumn = (sortBy) => {
     const { reportTableSortEvent } = this.props;
-    let order = 'desc';
+    let order = "desc";
 
-    if (this.state.sortBy === sortBy && this.state.order === 'desc') {
-      order = 'asc';
+    if (this.state.sortBy === sortBy && this.state.order === "desc") {
+      order = "asc";
     }
 
     if (reportTableSortEvent) {
@@ -212,7 +212,7 @@ class OtTable extends Component {
     this.setState({ sortBy, order });
   };
 
-  handleTableDownload = format => {
+  handleTableDownload = (format) => {
     const {
       columns,
       data,
@@ -226,7 +226,7 @@ class OtTable extends Component {
     }
 
     const headerMap = excludeDownloadColumns
-      ? columns.filter(column => !excludeDownloadColumns.includes(column.id))
+      ? columns.filter((column) => !excludeDownloadColumns.includes(column.id))
       : columns;
 
     downloadTable({
@@ -256,7 +256,7 @@ class OtTable extends Component {
     const { sortBy, order, page } = this.state;
     const filterRow = filters ? (
       <TableRow className={classes.tableRowFilters}>
-        {columns.map(column => (
+        {columns.map((column) => (
           <TableCell key={column.id} className={classes.tableCellHeader}>
             {column.renderFilter ? column.renderFilter() : null}
           </TableCell>
@@ -279,7 +279,7 @@ class OtTable extends Component {
             <Grid item>
               <Button
                 variant="outlined"
-                onClick={this.handleTableDownload.bind(null, 'json')}
+                onClick={this.handleTableDownload.bind(null, "json")}
               >
                 JSON
               </Button>
@@ -287,7 +287,7 @@ class OtTable extends Component {
             <Grid item>
               <Button
                 variant="outlined"
-                onClick={this.handleTableDownload.bind(null, 'csv')}
+                onClick={this.handleTableDownload.bind(null, "csv")}
               >
                 CSV
               </Button>
@@ -295,7 +295,7 @@ class OtTable extends Component {
             <Grid item className={classes.buttonMargin}>
               <Button
                 variant="outlined"
-                onClick={this.handleTableDownload.bind(null, 'tsv')}
+                onClick={this.handleTableDownload.bind(null, "tsv")}
               >
                 TSV
               </Button>
@@ -315,7 +315,7 @@ class OtTable extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  {columns.map(column => (
+                  {columns.map((column) => (
                     <TableCell
                       key={column.id}
                       className={classNames(classes.tableCellHeader, {
@@ -369,7 +369,7 @@ class OtTable extends Component {
                           classes.tableRowFixed
                         )}
                       >
-                        {columnsFixed.map(column => (
+                        {columnsFixed.map((column) => (
                           <TableCell
                             key={column.id}
                             className={classNames(classes.tableCell, {
@@ -394,7 +394,7 @@ class OtTable extends Component {
                   .slice(page * pageSize, page * pageSize + pageSize)
                   .map((row, index) => (
                     <TableRow key={index} className={classes.tableRow}>
-                      {columns.map(column => (
+                      {columns.map((column) => (
                         <TableCell
                           key={column.id}
                           className={classNames(classes.tableCell, {

@@ -1,20 +1,20 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import downloadTable from '../helpers/downloadTable';
-import { Skeleton } from '@material-ui/lab';
+import React from "react";
+import Grid from "@material-ui/core/Grid/index.js";
+import Typography from "@material-ui/core/Typography/index.js";
+import Button from "@material-ui/core/Button/index.js";
+import { withStyles } from "@material-ui/core/styles/index.js";
+import downloadTable from "../helpers/downloadTable";
+import { Skeleton } from "@material-ui/lab";
 
 const styles = () => ({
   container: {
-    marginBottom: '2px',
+    marginBottom: "2px",
   },
   downloadHeader: {
-    marginTop: '7px',
+    marginTop: "7px",
   },
-  'ml-1': {
-    'margin-left': '1em',
+  "ml-1": {
+    "margin-left": "1em",
   },
 });
 
@@ -44,9 +44,9 @@ function DataDownloader({
     return (
       <Grid container justifyContent="flex-end" spacing={1}>
         <Skeleton width="15vw" />
-        <Skeleton className={classes['ml-1']} width="6vw" height="6vh" />
-        <Skeleton className={classes['ml-1']} width="6vw" height="6vh" />
-        <Skeleton className={classes['ml-1']} width="6vw" height="6vh" />
+        <Skeleton className={classes["ml-1"]} width="6vw" height="6vh" />
+        <Skeleton className={classes["ml-1"]} width="6vw" height="6vh" />
+        <Skeleton className={classes["ml-1"]} width="6vw" height="6vh" />
       </Grid>
     );
   }
@@ -65,7 +65,7 @@ function DataDownloader({
       <Grid item>
         <Button
           variant="outlined"
-          onClick={() => handleDownload(tableHeaders, rows, fileStem, 'json')}
+          onClick={() => handleDownload(tableHeaders, rows, fileStem, "json")}
         >
           JSON
         </Button>
@@ -73,7 +73,7 @@ function DataDownloader({
       <Grid item>
         <Button
           variant="outlined"
-          onClick={() => handleDownload(tableHeaders, rows, fileStem, 'csv')}
+          onClick={() => handleDownload(tableHeaders, rows, fileStem, "csv")}
         >
           CSV
         </Button>
@@ -81,7 +81,7 @@ function DataDownloader({
       <Grid item>
         <Button
           variant="outlined"
-          onClick={() => handleDownload(tableHeaders, rows, fileStem, 'tsv')}
+          onClick={() => handleDownload(tableHeaders, rows, fileStem, "tsv")}
         >
           TSV
         </Button>
