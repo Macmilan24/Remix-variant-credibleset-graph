@@ -1,8 +1,8 @@
-import Typography from "@material-ui/core/Typography";
+import Typography from "@material-ui/core/Typography/index.js";
 import Paper from "@material-ui/core/Paper/index.js";
 import Grid from "@material-ui/core/Grid/index.js";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress/index.js";
+import { makeStyles } from "@material-ui/core/styles/index.js";
 
 import PlotContainerSection from "./PlotContainerSection";
 import { ReactNode } from "react";

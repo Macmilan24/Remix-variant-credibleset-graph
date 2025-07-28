@@ -1,14 +1,14 @@
-import React from 'react';
-import { findDOMNode } from 'react-dom';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import downloadSVG from '../helpers/downloadSVG';
-import PlotContainer from './PlotContainer';
+import React from "react";
+import { findDOMNode } from "react-dom";
+import Grid from "@material-ui/core/Grid/index.js";
+import Button from "@material-ui/core/Button/index.js";
+import downloadSVG from "../helpers/downloadSVG";
+import PlotContainer from "./PlotContainer";
 
 // // any should be converted to a proper ref
 const handleSVGDownload = (svgContainer: any, filenameStem: string) => {
   const node = findDOMNode(svgContainer.current);
-  const svgNode = node.nodeName === 'svg' ? node : node.querySelector('svg');
+  const svgNode = node.nodeName === "svg" ? node : node.querySelector("svg");
   downloadSVG({ svgNode, filenameStem });
 };
 // const handleSVGDownload = (svgContainerRef: React.RefObject<HTMLElement>, filenameStem: string) => {
@@ -23,7 +23,6 @@ const handleSVGDownload = (svgContainer: any, filenameStem: string) => {
 
 //   downloadSVG({ svgNode, filenameStem });
 // };
-
 
 const DownloadSVGPlot = ({
   loading,

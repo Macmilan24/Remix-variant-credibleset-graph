@@ -1,11 +1,11 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper/index.js";
 import List from "@material-ui/core/List/index.js";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Popper, { PopperProps } from "@material-ui/core/Popper";
-import Fade from "@material-ui/core/Fade";
-import { makeStyles } from "@material-ui/core/styles";
+import ListItem from "@material-ui/core/ListItem/index.js";
+import ListItemText from "@material-ui/core/ListItemText/index.js";
+import Popper, { PopperProps } from "@material-ui/core/Popper/index.js";
+import Fade from "@material-ui/core/Fade/index.js";
+import { makeStyles } from "@material-ui/core/styles/index.js";
 
 const useStyles = makeStyles({
   listitem: {
