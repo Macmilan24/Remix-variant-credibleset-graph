@@ -97,14 +97,16 @@ const margin2 = { top: 20, right: 20, bottom: 30, left: 80 };
 const height = OUTER_HEIGHT - margin.top - margin.bottom;
 const height2 = OUTER_HEIGHT2 - margin2.top - margin2.bottom;
 
-const ManhattanPlot = ({
-  associations,
-  credibleSets,
-  tableColumns,
-  studyId,
-  onZoom,
-  listTooltip: ListTooltip,
-}) => {
+const ManhattanPlot = React.forwardRef((props, ref) => {
+  const {
+    associations,
+    credibleSets,
+    tableColumns,
+    studyId,
+    onZoom,
+    listTooltip: ListTooltip,
+  } = props;
+
   const svgRef = useRef();
   const svg2Ref = useRef();
   const clipRef = useRef();
@@ -320,7 +322,9 @@ const ManhattanPlot = ({
     };
 
     const brushed = (event) => {
-      if (event.sourceEvent && event.sourceEvent.type === "zoom") return;
+      if (event.sourceEvent && event.sourceEvent.type === "zoom") {
+        return;
+      }
       setTooltipOpen(false);
 
       const { x, x2, zoom, xAxis } = d3Instances.current;
@@ -335,8 +339,12 @@ const ManhattanPlot = ({
         .attr("cx", (d) => x(d.globalPosition));
       focus
         .selectAll("g.dot-group")
-        .select("rect")
+        .select('rect[fill*="#"]')
         .attr("x", (d) => x(d.globalPosition) - 1);
+      focus
+        .selectAll("g.dot-group")
+        .select("rect.hover-target")
+        .attr("x", (d) => x(d.globalPosition) - 4);
 
       drawChromosomeBands(x);
       xAxis.tickValues(getXTicks(x));
@@ -352,7 +360,9 @@ const ManhattanPlot = ({
     };
 
     const zoomed = (event) => {
-      if (event.sourceEvent && event.sourceEvent.type === "brush") return;
+      if (event.sourceEvent && event.sourceEvent.type === "brush") {
+        return;
+      }
       setTooltipOpen(false);
 
       const { x, x2, brush, xAxis } = d3Instances.current;
@@ -367,8 +377,12 @@ const ManhattanPlot = ({
         .attr("cx", (d) => x(d.globalPosition));
       focus
         .selectAll("g.dot-group")
-        .select("rect")
+        .select('rect[fill*="#"]')
         .attr("x", (d) => x(d.globalPosition) - 1);
+      focus
+        .selectAll("g.dot-group")
+        .select("rect.hover-target")
+        .attr("x", (d) => x(d.globalPosition) - 4);
 
       drawChromosomeBands(x);
       xAxis.tickValues(getXTicks(x));
@@ -403,12 +417,22 @@ const ManhattanPlot = ({
     d3.select(brushRef.current).call(brush);
     svg.call(zoom);
 
-    drawChromosomeBands(d3Instances.current.x);
+    const timer = setTimeout(() => {
+      if (brushRef.current) {
+        d3.select(brushRef.current).call(
+          brush.move,
+          d3Instances.current.x2.range()
+        );
+      }
+    }, 10);
 
     return () => {
+      clearTimeout(timer);
       brush.on("brush end", null);
       zoom.on("zoom", null);
-      d3.select(brushRef.current).on(".brush", null);
+      if (brushRef.current) {
+        d3.select(brushRef.current).on(".brush", null);
+      }
       svg.on(".zoom", null);
     };
   }, [width, onZoom]);
@@ -497,7 +521,7 @@ const ManhattanPlot = ({
       </div>
     </>
   );
-};
+});
 
 ManhattanPlot.displayName = "ManhattanPlot";
 export default ManhattanPlot;
