@@ -1,6 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Icon from '@material-ui/core/Icon';
+import { makeStyles } from '@material-ui/core/styles/index.js';
+import Icon from '@material-ui/core/Icon/index.js';
 import classNames from 'classnames';
 import { ReactNode, MouseEventHandler } from 'react';
 
