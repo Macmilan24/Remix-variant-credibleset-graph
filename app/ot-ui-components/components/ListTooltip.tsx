@@ -1,20 +1,20 @@
-import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Popper, { PopperProps } from '@material-ui/core/Popper';
-import Fade from '@material-ui/core/Fade';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import Paper from "@material-ui/core/Paper/index.js";
+import List from "@material-ui/core/List/index.js";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Popper, { PopperProps } from "@material-ui/core/Popper";
+import Fade from "@material-ui/core/Fade";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   listitem: {
-    padding: '0.2rem 0.6rem',
-    width: '100%',
+    padding: "0.2rem 0.6rem",
+    width: "100%",
   },
   listitemtext: {
-    fontSize: '0.75rem',
-    minWidth: '100%',
+    fontSize: "0.75rem",
+    minWidth: "100%",
   },
 });
 
@@ -26,8 +26,8 @@ const ListTooltip = ({
 }: {
   dataList: { label: string; value: string }[];
   open: boolean;
-  anchorEl: PopperProps['anchorEl'];
-  container: PopperProps['container'];
+  anchorEl: PopperProps["anchorEl"];
+  container: PopperProps["container"];
 }) => {
   const classes = useStyles();
   return (
@@ -40,7 +40,7 @@ const ListTooltip = ({
       modifiers={{
         preventOverflow: {
           enabled: true,
-          boundariesElement: 'window',
+          boundariesElement: "window",
         },
       }}
       style={{

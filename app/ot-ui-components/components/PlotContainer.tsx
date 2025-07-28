@@ -1,22 +1,22 @@
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { makeStyles } from '@material-ui/core/styles';
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper/index.js";
+import Grid from "@material-ui/core/Grid/index.js";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { makeStyles } from "@material-ui/core/styles";
 
-import PlotContainerSection from './PlotContainerSection';
-import { ReactNode } from 'react';
-import { ApolloError } from '@apollo/client';
+import PlotContainerSection from "./PlotContainerSection";
+import { ReactNode } from "react";
+import { ApolloError } from "@apollo/client";
 
 const useStyles = makeStyles({
   plotContainer: {
-    marginBottom: '15px',
+    marginBottom: "15px",
   },
   leftContainer: {
-    marginLeft: '4px',
+    marginLeft: "4px",
   },
   rightContainer: {
-    marginRight: '4px',
+    marginRight: "4px",
   },
 });
 

@@ -1,13 +1,13 @@
-import React from 'react';
-import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import classNames from 'classnames';
-import { makeStyles } from '@material-ui/core';
+import React from "react";
+import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon/index.js";
+import classNames from "classnames";
+import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles((theme) => {
   return {
     root: {
-      display: 'block',
-      margin: 'auto',
+      display: "block",
+      margin: "auto",
       fill: theme.palette.primary.main,
     },
   };
