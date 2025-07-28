@@ -1,13 +1,13 @@
-import React from 'react';
-import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import { makeStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import React from "react";
+import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon/index.js";
+import { makeStyles } from "@material-ui/core/styles/index.js";
+import classNames from "classnames";
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles((theme) => {
   return {
     root: {
-      width: '100px',
-      height: '100px',
+      width: "100px",
+      height: "100px",
       fill: theme.palette.primary.main,
     },
   };
@@ -30,7 +30,7 @@ const OtIcon = ({ className, ...rest }: SvgIconProps) => {
       <path
         fill="#0091eb"
         d="M34.6,56.6v7.7c0,4.3-3.6,7.7-7.9,7.7c-2.2,0-4.1-1-5.5-2.2c-1.4-1.4-2.4-3.4-2.4-5.5v-7.7
-	C18.7,56.6,34.6,56.6,34.6,56.6z"
+  C18.7,56.6,34.6,56.6,34.6,56.6z"
       />
       <path
         fill="#0091eb"
