@@ -325,8 +325,6 @@ const ManhattanPlot = React.forwardRef((props, ref) => {
       if (event.sourceEvent && event.sourceEvent.type === "zoom") {
         return;
       }
-
-      if (!event.sourceEvent) return;
       setTooltipOpen(false);
 
       const { x, x2, zoom, xAxis } = d3Instances.current;
@@ -352,13 +350,16 @@ const ManhattanPlot = React.forwardRef((props, ref) => {
       xAxis.tickValues(getXTicks(x));
       d3.select(xAxisRef.current).call(customXAxis, xAxis);
 
-      svg.call(
-        zoom.transform,
-        d3.zoomIdentity
-          .scale(innerWidth / (selection[1] - selection[0]))
-          .translate(-selection[0], 0)
-      );
-      if (onZoom) onZoom(start, end);
+      if (event.sourceEvent) {
+        svg.call(
+          zoom.transform,
+          d3.zoomIdentity
+            .scale(innerWidth / (selection[1] - selection[0]))
+            .translate(-selection[0], 0)
+        );
+
+        if (onZoom) onZoom(start, end);
+      }
     };
 
     const zoomed = (event) => {
@@ -395,8 +396,6 @@ const ManhattanPlot = React.forwardRef((props, ref) => {
       svg2
         .select(".brush")
         .call(brush.move, x.range().map(transform.invertX, transform));
-      const [start, end] = x.domain();
-      if (onZoom) onZoom(start, end);
     };
 
     const brush = d3
