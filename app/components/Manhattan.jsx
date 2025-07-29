@@ -325,6 +325,8 @@ const ManhattanPlot = React.forwardRef((props, ref) => {
       if (event.sourceEvent && event.sourceEvent.type === "zoom") {
         return;
       }
+
+      if (!event.sourceEvent) return;
       setTooltipOpen(false);
 
       const { x, x2, zoom, xAxis } = d3Instances.current;
@@ -363,6 +365,8 @@ const ManhattanPlot = React.forwardRef((props, ref) => {
       if (event.sourceEvent && event.sourceEvent.type === "brush") {
         return;
       }
+
+      if (!event.sourceEvent) return;
       setTooltipOpen(false);
 
       const { x, x2, brush, xAxis } = d3Instances.current;
